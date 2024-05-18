@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Planet {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="planet_name", length=40)
@@ -31,11 +31,15 @@ public class Planet {
     @Column(name="planet_land", length=40)
     private String land;
 
+    @Column (name = "qdte_movies_apperead", length = 5)
+    private int films;
+
     public Planet(String name, String weather, String land) {
         this.name = name;
         this.weather = weather;
         this.land = land;
     }
+
 
     
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.challenge.challengestarwars.dto.PlanetRequestDTO;
 import br.com.challenge.challengestarwars.model.Planet;
 import br.com.challenge.challengestarwars.service.PlanetService;
+import br.com.challenge.challengestarwars.service.SwapiApiService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
@@ -29,6 +30,7 @@ public class ControllerPlanet {
     @Autowired
     private PlanetService planetService;
 
+
     @PostMapping("create")
     public ResponseEntity<Planet> createPlanet(@Valid @RequestBody PlanetRequestDTO body ) {     
 
@@ -41,6 +43,8 @@ public class ControllerPlanet {
         List<Planet> planets = planetService.getAllPlanet();
         return ResponseEntity.ok(planets);
     }
+    
+
     
     
 }

@@ -30,16 +30,18 @@ public class PlanetService {
     }
 
     public void transferPlanetFromApitoBD(List<PlanetResultsApi> planetsBody){
-
-        for (PlanetResultsApi planet : planetsBody) {
-            Planet planetBase = new Planet();
-            planetBase.setName(planet.getName());
-            planetBase.setWeather(planet.getClimate());
-            planetBase.setLand(planet.getTerrain());
+        List <Planet> planets = new ArrayList<>();
+        
+        for (PlanetResultsApi planetResult : planetsBody) {
+            Planet planet = new Planet();
+            planet.setName(planetResult.getName());
+            planet.setWeather(planetResult.getClimate());
+            planet.setLand(planetResult.getTerrain());
             
-            planetBase.setFilms(countFilmsByPlanet(planet.getFilms()));
-            planetRepository.save(planetBase);
+            int filmCount = countFilmsByPlanet(planetResult.getFilms());
+            planet.setFilms(filmCount);
         }
+        planetRepository.saveAll(planets);
     }
 
     public int countFilmsByPlanet(List<Films> films){
